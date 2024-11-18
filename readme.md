@@ -71,14 +71,3 @@ This class contains the core functionality for capturing and analyzing packets:
 
 - **Legal Considerations**:
   - Ensure you have proper authorization to monitor the network traffic of devices.
-
----
-
-## Contributing
-
-Contributions are welcome! Fork the repository and submit a pull request with improvements or new features.
-
----
-
-**Disclaimer**: Use this application responsibly. Unauthorized monitoring of network traffic is illegal in many jurisdictions.
-```
