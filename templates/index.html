@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passive OS Fingerprinting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Passive OS Fingerprinting Dashboard</h1>
+        </div>
+        <div class="status" id="status">
+            Capturing packets...
+        </div>
+        <div class="results-container" id="results">
+        </div>
+    </div>
+
+    <script>
+        function updateResults() {
+            fetch('/results')
+                .then(response => response.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';
+                    
+                    for (const [ip, info] of Object.entries(data)) {
+                        const ipDiv = document.createElement('div');
+                        ipDiv.className = 'ip-entry';
+                        
+                        let osIcon = '💻';
+                        if (info.os === 'Windows') osIcon = '🪟';
+                        else if (info.os === 'Linux') osIcon = '🐧';
+                        
+                        ipDiv.innerHTML = `
+                            <h2><span class="os-icon">${osIcon}</span>${ip} (${info.os})</h2>
+                            <div class="metrics">
+                                <div class="metric-card">
+                                    <strong>Packet Count:</strong> ${info.fingerprint.packet_count}
+                                </div>
+                                <div class="metric-card">
+                                    <strong>TTL:</strong> ${info.fingerprint.ttl.join(', ')}
+                                </div>
+                                <div class="metric-card">
+                                    <strong>Window Sizes:</strong> ${info.fingerprint.window_sizes.join(', ')}
+                                </div>
+                                <div class="metric-card">
+                                    <strong>Last Seen:</strong> ${info.fingerprint.last_seen}
+                                </div>
+                            </div>
+                        `;
+                        resultsDiv.appendChild(ipDiv);
+                    }
+                });
+        }
+
+        // Update results every second
+        setInterval(updateResults, 1000);
+    </script>
+</body>
+</html>

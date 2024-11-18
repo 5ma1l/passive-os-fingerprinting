@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.results-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.ip-entry {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+.os-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.status {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #e8f5e9;
+}
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+.metric-card {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+}
